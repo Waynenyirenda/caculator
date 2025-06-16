@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+        <link rel="stylesheet" type="text/css" href="style.css"
+</head>
+    <body>
+    <table border="1">
+        <tr>
+        <td colspan="4">
+          <input type="text" id="inputBox" value="0"/>  
+        </td>
+        </tr>
+        <tr>
+        <td class="digitalbotton" onclick="digitBtnPressed(7)">7</td>
+        <td class="digitalbotton"  onclick="digitBtnPressed(8)">8</td>
+        <td class="digitalbotton"onclick="digitBtnPressed(9)" >9</td>
+        <td class="operator" onclick="operatorBtnPressed('*')">X</td>
+        </tr>
+        <tr>
+        <td class="digitalbotton" onclick="digitBtnPressed(4)">4</td>
+        <td class="digitalbotton" onclick="digitBtnPressed(5)">5</td>
+        <td class="digitalbotton" onclick="digitBtnPressed(6)">6</td>    
+        <td class="operator" onclick="operatorBtnPressed('-')">-</td>
+        </tr>
+        <tr>
+        <td class="digitalbotton" onclick="digitBtnPressed(1)">1</td>
+        <td class="digitalbotton" onclick="digitBtnPressed(2)">2</td>
+        <td class="digitalbotton"onclick="digitBtnPressed(3)">3</td>
+        <td class="operator" onclick="operatorBtnPressed('+')">+</td>    
+        </tr>
+        <tr>
+        <td class="digitalbotton" colspan="2"onclick="digitBtnPressed(0)">0</td>
+        <td class="acbotton" onclick="acBtnPressed()">AC</td>
+        <td class="operator" onclick="operatorBtnPressed('/')">/</td>
+        <tr>
+        <td class="operator" colspan="4" onclick="equalsBtnPressed()">=</td>
+            
+        </tr>
+    </table>
+    <script>
+        var newLine=true //bulletline. Dertermines that line is cleared when a button is pressed
+        var value;
+        var currentOperator;
+        //Event for any button pressed
+        function digitBtnPressed(button){ 
+        if(newLine){
+        document.getElementById("inputBox").value=button;
+        newLine=false;
+        } else{var currentValue=document.getElementById("inputBox").value;
+    document.getElementById("inputBox").value=currentValue + button;
+    }
+    } 
+    //event for when the cancel button is pressed//    
+    function acBtnPressed(){
+        document.getElementById("inputBox").value=0;
+        newLine=true
+    }    
+    //Event handler for the operations button    
+    function operatorBtnPressed(operator){
+        currentOperator=operator
+        value1=parseInt(document.getElementById("inputBox").value);
+        newLine=true;
+        
+    }
+    //Event button for the equals button 
+    function equalsBtnPressed(){
+        var value2=parseInt(document.getElementById("inputBox").value);
+        var finaltotal;
+        switch(currentOperator){
+            case "+":
+                finaltotal= value1 + value2;
+                break
+             case "-":
+                finaltotal= value1 - value2;
+                break    
+              case "*":
+                finaltotal= value1 * value2;
+                break  
+                 case "/":
+                finaltotal= value1 / value2;
+                break
+                
+        }
+        document.getElementById("inputBox").value=finaltotal;    
+        value1=0;
+        newLine=true;
+    }    
+        
+    
+        
+        
+    </script>
+    
+    
+    
+    
+    
+    </body>
+</html>
